@@ -87,13 +87,8 @@ DATABASES = {
         "ENGINE": "django.db.backends.postgresql",
         "HOST": "34.28.212.131",
         "NAME": "website",
-        # "PORT": "",
         "USER": "test",
         "PASSWORD": 'PTn"F0)kQ@Od5Y@{',
-        # 'OPTIONS': {
-        #     'service': 'my_service',
-        #     'passfile': '.my_pgpass',
-        # },
     }
 }
 
@@ -101,18 +96,18 @@ DATABASES = {
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
-    {
-        "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",
-    },
-    {
-        "NAME": "django.contrib.auth.password_validation.MinimumLengthValidator",
-    },
-    {
-        "NAME": "django.contrib.auth.password_validation.CommonPasswordValidator",
-    },
-    {
-        "NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",
-    },
+    # {
+    #     "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",
+    # },
+    # {
+    #     "NAME": "django.contrib.auth.password_validation.MinimumLengthValidator",
+    # },
+    # {
+    #     "NAME": "django.contrib.auth.password_validation.CommonPasswordValidator",
+    # },
+    # {
+    #     "NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",
+    # },
 ]
 
 
