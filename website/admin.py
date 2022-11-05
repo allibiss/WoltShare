@@ -1,15 +1,27 @@
 from django.contrib import admin
 
-from .models import Product
+from .models import CustomUser, Product
 
 
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
     list_display = (
-        "seller",
+        # "seller",
         "quantity",
         "price_per_quant",
         "description",
-        "type",
+        "food_type",
         "packaging",
+    )
+
+
+@admin.register(CustomUser)
+class CustomUserAdmin(admin.ModelAdmin):
+    list_display = (
+        "email",
+        "username",
+        "name",
+        "phone",
+        "lat",
+        "lon",
     )

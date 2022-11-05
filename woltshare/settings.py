@@ -85,7 +85,7 @@ DATABASES = {
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "HOST": "34.28.212.131",
+        "HOST": "35.228.17.57",
         "NAME": "website",
         "USER": "test",
         "PASSWORD": 'PTn"F0)kQ@Od5Y@{',
@@ -132,3 +132,5 @@ STATIC_URL = "static/"
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+AUTH_USER_MODEL = "website.CustomUser"

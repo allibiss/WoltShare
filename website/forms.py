@@ -1,5 +1,7 @@
 from django import forms
+
 from .models import Product
+
 
 class SellForm(forms.Form):
     name = forms.CharField()
@@ -16,17 +18,17 @@ class ProductForm(forms.ModelForm):
         # for visible in self.visible_fields():
         #     visible.label.widget.attrs['class'] = 'form-control-label'
 
-        for visible in self.visible_fields():
-            visible.field.widget.attrs['class'] = 'form-control'
-            # visible.label.widget.attrs['class'] = 'form-control'
+        # for visible in self.visible_fields():
+        #     visible.field.widget.attrs['class'] = 'form-control'
+        # visible.label.widget.attrs['class'] = 'form-control'
 
-    class Meta:
-        model = Product
-        fields = [
-            "seller",
-            "quantity",
-            "price_per_quant",
-            "description",
-            "type",
-            "packaging",
-        ]
+    # class Meta:
+    #     model = Product
+    #     fields = [
+    #         "seller",
+    #         "quantity",
+    #         "price_per_quant",
+    #         "description",
+    #         "food_type",
+    #         "packaging",
+    #     ]

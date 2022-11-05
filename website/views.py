@@ -1,3 +1,5 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.models import AbstractUser, BaseUserManager
 from django.shortcuts import render
 from django.urls import reverse
 from django.views.generic import (
@@ -7,20 +9,20 @@ from django.views.generic import (
     TemplateView,
     UpdateView,
 )
+from django.views.generic.detail import DetailView
 
-from .forms import SellForm, ProductForm
+from .forms import ProductForm, SellForm
 from .models import Product, User
 
-
-class ProfileView(TemplateView):
-    template_name = "profile.html"
+# class ProfileView(TemplateView):
+#     template_name = "profile.html"
 
 
 class HomeView(TemplateView):
     template_name = "home.html"
 
 
-class BuyView(TemplateView):
+class ProductsView(TemplateView):
     template_name = "buy.html"
 
     def get_context_data(self, **kwargs):
@@ -65,14 +67,13 @@ class ProductCreateFormView(CreateView):
 
 
 class ProductDeleteView(DeleteView):
-    Product = Product
+    product = Product
     # success_url = reverse_lazy('author-list'){% csrf_token %}
 
 
-# class SellFormView(FormView):
-#     template_name = "sell.html"
-#     form_class = SellForm
-#     success_url = "/thanks"
+class DoneView(TemplateView):
+    template_name = "done.html"
+
 
 #     def form_valid(self, form):
 #         # This method is called when valid form data has been POSTed.
@@ -82,6 +83,7 @@ class ProductDeleteView(DeleteView):
 
 
 def product_add(request):
+    data = {}
     if request.method == "POST":
         data = request.POST.dict()
         action = data.get("firstname")
@@ -89,12 +91,12 @@ def product_add(request):
         user = User.objects.all()[0]
         product = Product(
             seller=user,
-            quantity = 55,
-            price_per_quant = 123,
-            description = 'Very nice ratatouille',
-            type = 'Big food',
-            packaging = 'True',
-            )
+            quantity=55,
+            price_per_quant=123,
+            description="Very nice ratatouille",
+            type="Big food",
+            packaging="True",
+        )
         product.save()
 
     return render(request, "success.html", {"product": data})
