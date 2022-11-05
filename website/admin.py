@@ -13,13 +13,3 @@ class ProductAdmin(admin.ModelAdmin):
         "type",
         "packaging",
     )
-    # list_filter = ("status", "due_back")
-
-    # fieldsets = (
-    #     (None, {
-    #         'fields': ('book', 'imprint', 'id')
-    #     }),
-    #     ('Availability', {
-    #         'fields': ('status', 'due_back', 'borrower')
-    #     }),
-    # )

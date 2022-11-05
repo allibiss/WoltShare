@@ -10,17 +10,6 @@ from django.db import models
 
 
 class Product(models.Model):
-<<<<<<< HEAD
-    seller = models.ForeignKey(User, on_delete=models.CASCADE,\
-        related_name='%(class)s_seller')
-    quantity = models.IntegerField('Quantity')
-    price_per_quant = models.FloatField('Price per quantity')
-    description = models.CharField('Description', max_length=512)
-    type = models.CharField('Type', max_length=256)
-    packaging = models.BooleanField('Does it have packaging', default='False')
-    # date = models.DateField('Date of posting')
-    # expiry_date = models.DateField('Expiry date')
-=======
     seller = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name="%(class)s_seller"
     )
@@ -29,7 +18,6 @@ class Product(models.Model):
     description = models.CharField("Description", max_length=512)
     type = models.CharField("Type", max_length=256)
     packaging = models.BooleanField("Does it have packaging", default="False")
->>>>>>> 60ca73b73cb4ae29b2fdfd108340650ec2469187
 
 
 class Transaction(models.Model):

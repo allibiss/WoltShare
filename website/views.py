@@ -1,6 +1,5 @@
 from django.shortcuts import render
-from django.views.generic import TemplateView
-from .models import *
+from django.urls import reverse
 from django.views.generic import (
     CreateView,
     DeleteView,
@@ -10,6 +9,7 @@ from django.views.generic import (
 )
 
 from .forms import SellForm
+from .models import *
 from .models import Product, User
 
 
@@ -27,8 +27,20 @@ class BuyView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         # All products
-        products = Product.objects.all()   #.order_by("date")
+        products = Product.objects.all()  # .order_by("date")
         context["products"] = products
+        return context
+
+
+class ProductView(TemplateView):
+    template_name = "product.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        # All products
+        pk = self.kwargs["pk"]
+        product = Product.objects.get(id=pk)
+        context["product"] = product
         return context
 
 
@@ -47,10 +59,8 @@ class ProductCreateView(CreateView):
         "packaging",
     ]
 
-
-class ProductUpdateView(UpdateView):
-    model = Product
-    fields = ["name"]
+    def get_success_url(self):
+        return reverse("product-update", kwargs={"pk": self.object.lawyer_slug})
 
 
 class ProductDeleteView(DeleteView):

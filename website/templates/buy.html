@@ -1,8 +1,12 @@
-Buy page
-
-<br>
-Helo, ANoop
 
 {% for product in products %}
-    {{product.type}}<br>
+    <a href="/product/{{product.id}}/">Link product {{product.id}}</a> <br/>
+    {{product.id}}<br/>
+    {{product.seller}}<br/>
+    {{product.quantity}}<br/>
+    {{product.price_per_quant}}<br/>
+    {{product.description}}<br/>
+    {{product.type}}<br/>
+    {{product.packaging}}<br/>
+    ===<br/>
 {% endfor %}
