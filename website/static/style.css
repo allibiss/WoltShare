@@ -6,3 +6,8 @@ body {
   font-size: large;
   background-color: yellow;
 }
+
+label {
+  font-size: larger;
+  background-color: blue;
+}

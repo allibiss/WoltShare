@@ -47,8 +47,8 @@ class ProductView(TemplateView):
 #     template_name = "buy_product.html"
 
 
-class ProductCreateView(CreateView):
-    template_name = "product_form.html"
+class ProductCreateFormView(CreateView):
+    template_name = "post_form.html"
     model = Product
     form_class = ProductForm
     # fields = [
@@ -65,8 +65,8 @@ class ProductCreateView(CreateView):
 
 
 class ProductDeleteView(DeleteView):
-    model = Product
-    # success_url = reverse_lazy('author-list')
+    Product = Product
+    # success_url = reverse_lazy('author-list'){% csrf_token %}
 
 
 # class SellFormView(FormView):
@@ -79,3 +79,22 @@ class ProductDeleteView(DeleteView):
 #         # It should return an HttpResponse.
 #         form.add_product()
 #         return super().form_valid(form)
+
+
+def product_add(request):
+    if request.method == "POST":
+        data = request.POST.dict()
+        action = data.get("firstname")
+
+        user = User.objects.all()[0]
+        product = Product(
+            seller=user,
+            quantity = 55,
+            price_per_quant = 123,
+            description = 'Very nice ratatouille',
+            type = 'Big food',
+            packaging = 'True',
+            )
+        product.save()
+
+    return render(request, "success.html", {"product": data})
