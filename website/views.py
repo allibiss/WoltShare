@@ -12,7 +12,7 @@ from django.views.generic import (
 from django.views.generic.detail import DetailView
 
 from .forms import ProductForm, SellForm
-from .models import Product, User
+from .models import CustomUser, Product
 
 # class ProfileView(TemplateView):
 #     template_name = "profile.html"
@@ -88,13 +88,13 @@ def product_add(request):
         data = request.POST.dict()
         action = data.get("firstname")
 
-        user = User.objects.all()[0]
+        user = CustomUser.objects.all()[0]
         product = Product(
             seller=user,
-            quantity=55,
-            price_per_quant=123,
+            quantity=10,
+            price_per_quant=10,
             description="Very nice ratatouille",
-            type="Big food",
+            food_type="PACK",
             packaging="True",
         )
         product.save()

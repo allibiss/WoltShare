@@ -11,14 +11,13 @@ urlpatterns = [
     # path("products/<slug:food_id>", my_views.BuyProductView.as_view()),
     # path("sell", my_views.SellFormView.as_view()),
     path(
-        "product/add-form/",
+        "sell/",
         my_views.ProductCreateFormView.as_view(),
         name="product-add-form",
     ),
     path("product/add/", my_views.product_add, name="product_add"),
     path("done/", my_views.DoneView.as_view()),
     path("product/", my_views.ProductsView.as_view()),
-    path("sell/", my_views.ProductCreateView.as_view(), name="product-add"),
     path("product/<int:pk>/", my_views.ProductView.as_view(), name="product-update"),
     path(
         "product/<int:pk>/delete/",
@@ -31,9 +30,9 @@ urlpatterns = [
     #     allauth_views.LoginView.as_view(template_name="profiles/login.html"),
     #     name="account_login",
     # ),
-    path(
-        "accounts/profile/",
-        my_views.CustomUserDetailView.as_view(),
-        name="profile",
-    ),
+    # path(
+    #     "accounts/profile/",
+    #     my_views.CustomUserDetailView.as_view(),
+    #     name="profile",
+    # ),
 ]
