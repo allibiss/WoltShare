@@ -17,6 +17,8 @@ class Product(models.Model):
     description = models.CharField('Description', max_length=512)
     type = models.CharField('Type', max_length=256)
     packaging = models.BooleanField('Does it have packaging', default='False')
+    # date = models.DateField('Date of posting')
+    # expiry_date = models.DateField('Expiry date')
 
 
 class Transaction(models.Model):
