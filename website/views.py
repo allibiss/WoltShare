@@ -8,8 +8,7 @@ from django.views.generic import (
     UpdateView,
 )
 
-from .forms import SellForm
-from .models import *
+from .forms import SellForm, ProductForm
 from .models import Product, User
 
 
@@ -49,15 +48,17 @@ class ProductView(TemplateView):
 
 
 class ProductCreateView(CreateView):
+    template_name = "product_form.html"
     model = Product
-    fields = [
-        "seller",
-        "quantity",
-        "price_per_quant",
-        "description",
-        "type",
-        "packaging",
-    ]
+    form_class = ProductForm
+    # fields = [
+    #     "seller",
+    #     "quantity",
+    #     "price_per_quant",
+    #     "description",
+    #     "type",
+    #     "packaging",
+    # ]
 
     def get_success_url(self):
         return reverse("product-update", kwargs={"pk": self.object.lawyer_slug})

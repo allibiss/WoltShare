@@ -1,0 +1,15 @@
+{% load static %}
+<html>
+
+<link rel="stylesheet" href="{% static 'style.css' %}">
+
+<body>
+
+<form method="post">
+    Hello, Marco
+    {{ form.as_p }}
+    <input type="submit" value="Spaghetti">
+</form>
+
+</body>
+</html>
