@@ -30,9 +30,14 @@ urlpatterns = [
     #     allauth_views.LoginView.as_view(template_name="profiles/login.html"),
     #     name="account_login",
     # ),
-    # path(
-    #     "accounts/profile/",
-    #     my_views.CustomUserDetailView.as_view(),
-    #     name="profile",
-    # ),
+    path(
+        "accounts/profile/",
+        my_views.CustomUserView.as_view(),
+        name="profile",
+    ),
+    path(
+        "accounts/profile/<int:pk>",
+        my_views.CustomUserOwnView.as_view(),
+        name="profile",
+    ),
 ]

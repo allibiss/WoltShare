@@ -1,3 +1,6 @@
+import os
+
+from django.conf import settings
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import AbstractUser, BaseUserManager
 from django.shortcuts import render
@@ -11,12 +14,8 @@ from django.views.generic import (
 )
 from django.views.generic.detail import DetailView
 
-from django.conf import settings
-
 from .forms import ProductForm, SellForm
 from .models import CustomUser, Product
-
-import os
 
 # class ProfileView(TemplateView):
 #     template_name = "profile.html"
@@ -79,6 +78,24 @@ class DoneView(TemplateView):
     template_name = "done.html"
 
 
+class CustomUserView(TemplateView):
+    template_name = "profile.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        # All products
+        # pk = self.kwargs["pk"]
+        # product = Product.objects.get(id=pk)
+        print(self.request.user)
+        # context["product"] = product
+        context["user"] = self.request.user
+        return context
+
+
+class CustomUserOwnView(TemplateView):
+    template_name = "profile.html"
+
+
 #     def form_valid(self, form):
 #         # This method is called when valid form data has been POSTed.
 #         # It should return an HttpResponse.
@@ -97,19 +114,19 @@ def product_add(request):
         price_per_quant = data["price_per_quant"]
         description = data["description"]
         food_type = data["food_type"]
-        if 'packaging' in data:
-            packaging = data['packaging'] == 'on'
+        if "packaging" in data:
+            packaging = data["packaging"] == "on"
         else:
             packaging = False
 
         image = data["image"]
-        print('image', image, type(image))
-        name = 'food.jpeg'
+        print("image", image, type(image))
+        name = "food.jpeg"
         new_path = settings.MEDIA_ROOT + name
         # Move the file on the filesystem
         os.rename(image, new_path)
-        
-        print('pack', packaging)
+
+        print("pack", packaging)
 
         product = Product(
             seller=seller,
@@ -119,8 +136,8 @@ def product_add(request):
             food_type=food_type,
             packaging=packaging,
             image=image,
-            date='2022-11-06',
-            ingredients='Everything'
+            date="2022-11-06",
+            ingredients="Everything",
         )
 
         # print('PRODS', Product.objects.all().values())

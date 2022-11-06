@@ -1,1 +1,151 @@
-Sell page
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+
+	<div class="container">
+    <div class="row">
+      <div class="col">
+        Column
+      </div>
+      <div class="col">
+        Column
+      </div>
+      <div class="col">
+        Column
+      </div>
+    </div>
+  </div>
+
+
+    <main id="main">
+        <section >
+          <div class="container" data-aos="fade-up">
+            <div class="section-header">
+              <h2>Share your food</h2>
+              <p>Upload <span>the food </span> you want to share</p>
+            </div>
+
+            <div class="row">
+              <div class="col">
+
+
+
+                <script class="jsbin" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+                <div class="file-upload">
+                  <button class="file-upload-btn" type="button" onclick="$('.file-upload-input').trigger( 'click' )">Add Image</button>
+
+                  <div class="image-upload-wrap">
+                    <input class="file-upload-input" type='file' onchange="readURL(this);" accept="image/*" />
+                    <div class="drag-text">
+                      <h3>Drag and drop here photos of your food</h3>
+                    </div>
+                  </div>
+                  <div class="file-upload-content">
+                    <img class="file-upload-image" src="#" alt="your image" />
+                    <div class="image-title-wrap">
+                      <button type="button" onclick="removeUpload()" class="remove-image">Remove <span class="image-title">Uploaded Image</span></button>
+                    </div>
+                  </div>
+                </div>
+
+
+                <div class="mt-3 ms-5 form-check">
+                  <input type="checkbox" class="form-check-input" id="containter">
+                  <label class="form-check-label" for="container">I will use my own container</label>
+                </div>
+
+                <div class="mt-3 ms-5 form-check">
+                  <input type="checkbox" class="form-check-input" id="rules">
+                  <label class="form-check-label" for="rules">I have read the <a href="">rules of responsibility</a> related to sharing food</label>
+                </div>
+              </div>
+            <div class="col">
+              <form>
+                <div class="mb-4">
+                  <label for="titleinput" class="form-label">Title</label>
+                  <input type="text" class="form-control" id="title" aria-describedby="foodtitle">
+                  <div id="foodtitle" class="form-text">Write a descriptive title for your food</div>
+                </div>
+
+                  <div class="row mb-4">
+                  <div class="col-5">
+                  <label for="titleinput" class="form-label">Select the food type</label>
+                  <select class="form-control" id="foodtype">
+                    <option>Cooked food</option>
+                    <option>Packaged food</option>
+                    <option>Fruits</option>
+                    <option>Vegetables</option>
+                  </select>
+                  </div>
+
+                  <div class="col-5">
+                  <label for="titleinput" class="form-label">Select the food quantity</label>
+                  <select class="form-control" id="foodtype">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                  </select>
+                    </div>
+
+                   <div class="col-2">
+                  <label for="price" class="form-label">Price</label>
+                  <input type="text" class="form-control" id="title" aria-describedby="foodtitle">
+                </div>
+
+                </div>
+
+
+                <div class="mb-4">
+                  <label for="descriptioninput" class="form-label">Briefly describe your food</label>
+                   <textarea class="form-control" id="description" rows="3"></textarea>
+                </div>
+
+                <div class="mb-4">
+                    <label for="allergens" class="form-label">Allergens:</label> <br>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="ingredient1s" value="gluten">
+                    <label class="form-check-label" for="ingredients1">Cereals</label>
+                  </div>
+
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="ingredients2" value="Fish">
+                    <label class="form-check-label" for="ingredients2">Fish</label>
+                  </div>
+
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="ingredients3" value="Eggs">
+                    <label class="form-check-label" for="ingredients3">Eggs</label>
+                  </div>
+
+
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="ingredients4" value="Peanuts">
+                    <label class="form-check-label" for="ingredients4">Peanuts</label>
+                  </div>
+
+
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="ingredients5" value="Soybeans">
+                    <label class="form-check-label" for="ingredients5">Soybeans</label>
+                  </div>
+
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="ingredients6" value="Milk">
+                    <label class="form-check-label" for="ingredients6">Milk</label>
+                  </div>
+                </div>
+              </form>
+              </div>
+              <button type="submit" class="btn btn-primary">PUBLISH</button>
+            </div>
+          </div>
+        </section>
+
+    </main>
+
+
+{% endblock %}
