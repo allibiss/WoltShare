@@ -9,7 +9,7 @@ Participants:
 - József-Hunor Jánosi
 - Fatmakhanim Mammadova
 - Giacomo Mutti
-. Sibilla Silbano
+- Sibilla Silbano
 
 ---
 The website connects people who have leftover food with hungry people by bringing Wolt drivers to them.
