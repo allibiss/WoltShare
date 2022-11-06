@@ -26,11 +26,11 @@ urlpatterns = [
         name="product-delete",
     ),
     # Users
-    # path(
-    #     "login/",
-    #     allauth_views.LoginView.as_view(template_name="profiles/login.html"),
-    #     name="account_login",
-    # ),
+    path(
+        "login/",
+        my_views.LoginView.as_view(),
+        name="account_login",
+    ),
     path(
         "accounts/profile/",
         my_views.CustomUserOwnView.as_view(),

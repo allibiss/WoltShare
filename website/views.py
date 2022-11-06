@@ -38,6 +38,8 @@ class HomeView(TemplateView):
 #         article.update_counter()
 #         return super().get_redirect_url(*args, **kwargs)
 
+class LoginView(TemplateView):
+    template_name = 'login.html'
 
 def purchase_view(request, pk):
     buyer = request.user
