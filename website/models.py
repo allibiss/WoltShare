@@ -12,7 +12,7 @@ class CustomUser(AbstractUser):
     phone = models.CharField("Phone number", max_length=256, blank=True)
     lat = models.DecimalField(max_digits=9, decimal_places=6, default=0.0)
     lon = models.DecimalField(max_digits=9, decimal_places=6, default=0.0)
-    # address = models.CharField('address', max_length=256)
+    address = models.CharField("address", max_length=256)
 
 
 FOOD_TYPE_CHOICES = (
@@ -34,7 +34,7 @@ class Product(models.Model):
         max_length=4, choices=FOOD_TYPE_CHOICES, default="PACK"
     )
     packaging = models.BooleanField("Does it have packaging", default="False")
-    image = models.ImageField('Image', upload_to='products')
+    image = models.ImageField("Image", upload_to="products")
     date = models.DateField("Date", default=datetime.date.today)
 
 
