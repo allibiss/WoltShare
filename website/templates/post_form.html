@@ -18,89 +18,97 @@
     </div>
   </div>
 
+  <body>
+      <main id="main">
+          <section >
+              <form action="{% url 'woltshare:product_add' %}" method="post"> {% csrf_token %}
+              
+            {% if error %}
+            {{ error }}
+{% endif %}
 
-    <main id="main">
-        <section >
-          <div class="container" data-aos="fade-up">
-            <div class="section-header">
-              <h2>Share your food</h2>
-              <p>Upload <span>the food </span> you want to share</p>
+
+
+<div class="container" data-aos="fade-up">
+    <div class="section-header">
+        <h2>Share your food</h2>
+                <p>Upload <span>the food </span> you want to share</p>
             </div>
-
+            
             <div class="row">
-              <div class="col">
+                <div class="col">
+                    
+                    
+                    
+                    <script class="jsbin" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+                    <div class="file-upload">
+                        <button class="file-upload-btn" type="button" onclick="$('.file-upload-input').trigger( 'click' )">Add Image</button>
 
-
-
-                <script class="jsbin" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
-                <div class="file-upload">
-                  <button class="file-upload-btn" type="button" onclick="$('.file-upload-input').trigger( 'click' )">Add Image</button>
-
-                  <div class="image-upload-wrap">
-                    <input class="file-upload-input" type='file' onchange="readURL(this);" accept="image/*" />
-                    <div class="drag-text">
-                      <h3>Drag and drop here photos of your food</h3>
+                        <div class="image-upload-wrap">
+                            <input class="file-upload-input" type='file' onchange="readURL(this);" accept="image/*" id="image" name="image"/>
+                            <div class="drag-text">
+                                <h3>Drag and drop here photos of your food</h3>
+                            </div>
+                        </div>
+                        <div class="file-upload-content">
+                            <img class="file-upload-image" src="#" alt="your image" />
+                            <div class="image-title-wrap">
+                                <button type="button" onclick="removeUpload()" class="remove-image">Remove <span class="image-title">Uploaded Image</span></button>
+                            </div>
+                        </div>
                     </div>
-                  </div>
-                  <div class="file-upload-content">
-                    <img class="file-upload-image" src="#" alt="your image" />
-                    <div class="image-title-wrap">
-                      <button type="button" onclick="removeUpload()" class="remove-image">Remove <span class="image-title">Uploaded Image</span></button>
+                    
+                    
+                    <div class="mt-3 ms-5 form-check">
+                        <input type="checkbox" class="form-check-input" id="containter">
+                        <label class="form-check-label" for="container">I will use my own container</label>
                     </div>
-                  </div>
-                </div>
-
-
-                <div class="mt-3 ms-5 form-check">
-                  <input type="checkbox" class="form-check-input" id="containter">
-                  <label class="form-check-label" for="container">I will use my own container</label>
-                </div>
-
-                <div class="mt-3 ms-5 form-check">
-                  <input type="checkbox" class="form-check-input" id="rules">
-                  <label class="form-check-label" for="rules">I have read the <a href="">rules of responsibility</a> related to sharing food</label>
-                </div>
+                    
+                    <div class="mt-3 ms-5 form-check">
+                        <input type="checkbox" class="form-check-input" id="rules">
+                        <label class="form-check-label" for="rules">I have read the <a href="">rules of responsibility</a> related to sharing food</label>
+                    </div>
               </div>
-            <div class="col">
-              <form>
+              <div class="col">
+                  <form>
                 <div class="mb-4">
-                  <label for="titleinput" class="form-label">Title</label>
-                  <input type="text" class="form-control" id="title" aria-describedby="foodtitle">
-                  <div id="foodtitle" class="form-text">Write a descriptive title for your food</div>
+                    <label for="title" class="form-label">Title</label>
+                    <input type="text" class="form-control" id="title" aria-describedby="foodtitle">
+                    <div id="foodtitle" class="form-text">Write a descriptive title for your food</div>
                 </div>
-
-                  <div class="row mb-4">
-                  <div class="col-5">
-                  <label for="titleinput" class="form-label">Select the food type</label>
-                  <select class="form-control" id="foodtype">
-                    <option>Cooked food</option>
-                    <option>Packaged food</option>
-                    <option>Fruits</option>
-                    <option>Vegetables</option>
+                
+                <div class="row mb-4">
+                    <div class="col-5">
+                        <label for="foodtype" class="form-label">Select the food type</label>
+                        <select class="form-control" id="foodtype">
+                            <option value="COOK">Cooked food</option>
+                            <option value="PACK">Packaged food</option>
+                            <option value="FRUT">Fruits</option>
+                    <option value="VEGE">Vegetables</option>
                   </select>
                   </div>
-
+                  
                   <div class="col-5">
-                  <label for="titleinput" class="form-label">Select the food quantity</label>
-                  <select class="form-control" id="foodtype">
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                  </select>
+                      <!-- <label for="quantity" class="form-label">Select the food quantity</label>
+                  <select class="form-control" id="quantity" name="quantity">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select> -->
                     </div>
-
-                   <div class="col-2">
-                  <label for="price" class="form-label">Price</label>
-                  <input type="text" class="form-control" id="title" aria-describedby="foodtitle">
+                    
+                    <div class="col-2">
+                        <label for="price" class="form-label">Price</label>
+                        <input type="text" class="form-control" id="price" aria-describedby="foodtitle">
                 </div>
 
                 </div>
 
 
                 <div class="mb-4">
-                  <label for="descriptioninput" class="form-label">Briefly describe your food</label>
+                  <label for="description" class="form-label">Briefly describe your food</label>
                    <textarea class="form-control" id="description" rows="3"></textarea>
                 </div>
 
@@ -143,9 +151,13 @@
               <button type="submit" class="btn btn-primary">PUBLISH</button>
             </div>
           </div>
+
+         </form>
+
         </section>
 
     </main>
+</body>
 
 
 {% endblock %}

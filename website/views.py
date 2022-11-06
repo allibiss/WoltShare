@@ -110,26 +110,46 @@ def product_add(request):
 
         seller = CustomUser.objects.all()[0]
 
+        print('DATA', data)
+        print('REQUEST', request.POST)
+
         quantity = data["quantity"]
         price_per_quant = data["price_per_quant"]
         description = data["description"]
-        food_type = data["food_type"]
-        if "packaging" in data:
-            packaging = data["packaging"] == "on"
+        food_type = data["foodtype"]
+
+        if "container" in data:
+            packaging = True
         else:
             packaging = False
 
+        # rules
+        if "rules" not in data:
+            # reload? not let forward
+            return render(request, "post_form.html", {"error": "Accept terms of condition, please!"})
+        
+        title = data['title']
+
+        ingredients = []
+        for i in range(6):
+            if f'ingredient{i+1}s' in data:
+                ingredients.append(data['ingredient{i+1}s'])
+        
+        # ingredient1s = data['ingredient1s']
+        # ingredient2s = data['ingredient2s']
+        # ingredient3s = data['ingredient3s']
+        # ingredient4s = data['ingredient4s']
+        # ingredient5s = data['ingredient5s']
+        # ingredient6s = data['ingredient6s']
+        # ingredients = [ingredient1s, ingredient2s, ingredient3s, ingredient4s, ingredient5s, ingredient6s]
+
         image = data["image"]
-        print("image", image, type(image))
-        name = "food.jpeg"
-        new_path = settings.MEDIA_ROOT + name
-        # Move the file on the filesystem
-        os.rename(image, new_path)
 
         print("pack", packaging)
 
         product = Product(
             seller=seller,
+            title=title,
             quantity=quantity,
             price_per_quant=price_per_quant,
             description=description,
@@ -137,10 +157,9 @@ def product_add(request):
             packaging=packaging,
             image=image,
             date="2022-11-06",
-            ingredients="Everything",
+            ingredients=ingredients,
         )
 
-        # print('PRODS', Product.objects.all().values())
         product.save()
 
     return render(request, "success.html", {"product": data})

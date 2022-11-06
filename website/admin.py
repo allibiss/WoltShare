@@ -15,6 +15,7 @@ class ProductAdmin(admin.ModelAdmin):
         "image",
         "ingredients",
         "date",
+        "title",
     )
 
 

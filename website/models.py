@@ -4,6 +4,8 @@ from django.conf import settings
 from django.contrib.auth.models import AbstractUser, User
 from django.db import models
 
+from django.contrib.postgres.fields import ArrayField
+
 
 class CustomUser(AbstractUser):
     email = models.EmailField("email address", unique=True)
@@ -16,8 +18,10 @@ class CustomUser(AbstractUser):
 
 
 FOOD_TYPE_CHOICES = (
-    ("PACK", "Packaged"),
-    ("INGR", "Ingredient"),
+    ("PACK", "Packaged food"),
+    ("COOK", "Cooked food"),
+    ("VEGE", "Vegetables"),
+    ("FRUT", "Fruits"),
 )
 
 
@@ -29,7 +33,8 @@ class Product(models.Model):
     quantity = models.IntegerField("Quantity")
     price_per_quant = models.FloatField("Price per quantity")
     description = models.CharField("Description", max_length=512)
-    ingredients = models.CharField("Ingredients", max_length=512)
+    # ingredients = models.CharField("Ingredients", max_length=512)
+    ingredients = ArrayField(models.CharField("Ingredients", max_length=512))
     food_type = models.CharField(
         max_length=4, choices=FOOD_TYPE_CHOICES, default="PACK"
     )
