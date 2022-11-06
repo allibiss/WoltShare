@@ -29,6 +29,7 @@ class Product(models.Model):
     quantity = models.IntegerField("Quantity")
     price_per_quant = models.FloatField("Price per quantity")
     description = models.CharField("Description", max_length=512)
+    ingredients = models.CharField("Ingredients", max_length=512)
     food_type = models.CharField(
         max_length=4, choices=FOOD_TYPE_CHOICES, default="PACK"
     )
