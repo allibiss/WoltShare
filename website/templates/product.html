@@ -24,7 +24,7 @@ Product:
 	  <section class="mt-5 py-5">
             <div class="container px-4 px-lg-5 my-5">
                 <div class="row gx-4 gx-lg-5 align-items-center">
-                    <div class="col-md-6"><img class="card-img-top mb-5 mb-md-0" src="{% static 'images/product.jpg'%}" alt="food" /></div>
+                    <div class="col-md-6"><img class="card-img-top mb-5 mb-md-0" src="/media/{{product.image}}" alt="food" /></div>
                     <div class="col-md-6">
                         <div class="small mb-1">Cooked by: <a href="/accounts/profile/{{product.seller.id}}">{{product.seller.name}}</a><span class="text-secondary"> (Helsinki, 10km)</span></div>
                         <h1 class="display-5 fw-bolder">{{product.title}}</h1>

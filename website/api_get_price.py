@@ -6,7 +6,11 @@ def get_fee(DeliveryFeeRequestPayload_):
     h = {"Authorization": "Bearer 8OJSTMKSAGoWUkO3ETXtQwZEiKYymzH4mAmbG1icJVU"}
     x = requests.post(url, json=DeliveryFeeRequestPayload_, headers=h)
     data = x.json()
-    fee = data["fee"]["amount"]
+    print(x.status_code, x.text)
+    if x:
+        fee = data["fee"]["amount"]
+    else:
+        fee = "NA"
     return fee
 
 

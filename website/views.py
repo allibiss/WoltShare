@@ -12,6 +12,7 @@ from django.views.generic import (
     RedirectView,
     TemplateView,
     UpdateView,
+    View,
 )
 from django.views.generic.detail import DetailView
 
@@ -19,9 +20,6 @@ from . import api_set_order
 from .api_get_price import DelFeeReq_strg, get_fee
 from .forms import ProductForm, SellForm
 from .models import CustomUser, Product
-
-# class ProfileView(TemplateView):
-#     template_name = "profile.html"
 
 
 class HomeView(TemplateView):
@@ -38,8 +36,10 @@ class HomeView(TemplateView):
 #         article.update_counter()
 #         return super().get_redirect_url(*args, **kwargs)
 
+
 class LoginView(TemplateView):
-    template_name = 'login.html'
+    template_name = "login.html"
+
 
 def purchase_view(request, pk):
     buyer = request.user
@@ -72,8 +72,10 @@ class ProductsView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         # All products
-        products = Product.objects.all()  # .order_by("date")
-        context["products"] = products
+        products_pack = Product.objects.filter(food_type="PACK")  # .order_by("date")
+        products_cook = Product.objects.filter(food_type="COOK")  # .order_by("date")
+        context["products_pack"] = products_pack
+        context["products_cook"] = products_cook
         return context
 
 
@@ -97,17 +99,12 @@ class ProductView(TemplateView):
         return get_fee(myStrgReq)
 
 
-# class BuyProductView(TemplateView):
-#     template_name = "buy_product.html"
+class ProductCreateFormView(View):
+    def get(self, request):
+        return render(request, "post_form.html")
 
-
-class ProductCreateFormView(CreateView):
-    template_name = "post_form.html"
-    model = Product
-    form_class = ProductForm
-
-    def get_success_url(self):
-        return reverse("product-update", kwargs={"pk": self.object.lawyer_slug})
+    def post(self, request):
+        return redirect("/product/")
 
 
 class ProductDeleteView(DeleteView):
@@ -134,22 +131,34 @@ class CustomUserOwnView(TemplateView):
     template_name = "profile.html"
 
 
+#     def form_valid(self, form):
+#         # This method is called when valid form data has been POSTed.
+#         # It should return an HttpResponse.
+#         form.add_product()
+#         return super().form_valid(form)
+
+
 def product_add(request):
     data = {}
     if request.method == "POST":
         data = request.POST.dict()
 
+        print("hee", CustomUser.objects.all())
+        print("hoo", CustomUser.objects.all()[0])
         seller = CustomUser.objects.all()[0]
 
-        # quantity = data["quantity"]
-        # price_per_quant = data["price_per_quant"]
-        # description = data["description"]
-        # food_type = data["foodtype"]
+        quantity = data["quantity"]
+        price_per_quant = data["price_per_quant"]
+        description = data["description"]
+        food_type = data["food_type"]
+        if "packaging" in data:
+            packaging = data["packaging"] == "on"
+        else:
+            packaging = False
 
-        # if "container" in data:
-        #     packaging = True
-        # else:
-        #     packaging = False
+        # image = data["image"]
+
+        print("pack", packaging)
 
         # # rules
         # if "rules" not in data:
@@ -160,38 +169,7 @@ def product_add(request):
         #         {"error": "Accept terms of condition, please!"},
         #     )
 
-        # title = data["title"]
-
-        # ingredients = []
-        # for i in range(6):
-        #     if f"ingredient{i+1}s" in data:
-        #         ingredients.append(data["ingredient{i+1}s"])
-
-        # ingredient1s = data['ingredient1s']
-        # ingredient2s = data['ingredient2s']
-        # ingredient3s = data['ingredient3s']
-        # ingredient4s = data['ingredient4s']
-        # ingredient5s = data['ingredient5s']
-        # ingredient6s = data['ingredient6s']
-        # ingredients = [ingredient1s, ingredient2s, ingredient3s, ingredient4s, ingredient5s, ingredient6s]
-
-        image = data["image"]
-
-        # print("pack", packaging)
-
-        # product = Product(
-        #     seller=seller,
-        #     title=title,
-        #     quantity=quantity,
-        #     price_per_quant=price_per_quant,
-        #     description=description,
-        #     food_type=food_type,
-        #     packaging=packaging,
-        #     image=image,
-        #     date="2022-11-06",
-        #     ingredients=ingredients,
-        # )
-
-        # product.save()
+        print("PRODS", Product.objects.all().values())
+        product.save()
 
     return render(request, "success.html", {"product": data})
