@@ -1,3 +1,5 @@
+import datetime
+
 from django.conf import settings
 from django.contrib.auth.models import AbstractUser, User
 from django.db import models
@@ -19,6 +21,7 @@ FOOD_TYPE_CHOICES = (
 
 
 class Product(models.Model):
+    title = models.CharField("Title", max_length=512)
     seller = models.ForeignKey(
         CustomUser, on_delete=models.CASCADE, related_name="%(class)s_seller"
     )
@@ -29,6 +32,7 @@ class Product(models.Model):
         max_length=4, choices=FOOD_TYPE_CHOICES, default="PACK"
     )
     packaging = models.BooleanField("Does it have packaging", default="False")
+    date = models.DateField("Date", default=datetime.date.today)
 
 
 class Transaction(models.Model):

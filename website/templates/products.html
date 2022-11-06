@@ -1,37 +1,19 @@
-
 {% extends 'base.html' %}
 {% load static %}
 
-{% comment %}
-
-Product:
-
-<br/><br/>
-
-{{product.id}}<br/>
-{{product.seller}}<br/>
-{{product.quantity}}<br/>
-{{product.price_per_quant}}<br/>
-{{product.description}}<br/>
-{{product.food_type}}<br/>
-{{product.packaging}}<br/>
-
-<a href="/thanks-for-your-order/">
- {% endcomment %}
 
 {% block content %}
   <main id="main">
 	  <section class="mt-5 py-5">
             <div class="container px-4 px-lg-5 my-5">
                 <div class="row gx-4 gx-lg-5 align-items-center">
-                    <div class="col-md-6"><img class="card-img-top mb-5 mb-md-0" src="{% static 'images/product.jpg'%}" alt="food" /></div>
+                    <div class="col-md-6"><img class="card-img-top mb-5 mb-md-0" src="images/product.jpg" alt="food" /></div>
                     <div class="col-md-6">
                         <div class="small mb-1">Cooked by: <a href="profile.html">Name Surname</a><span class="text-secondary"> (Helsinki, 10km)</span></div>
-                        <h1 class="display-5 fw-bolder">{{product.title}}</h1>
-						<h5>Date: {{ product.date }}</h5>
-						<h5>Available portions: {{ product.date }}</h5>
+                        <h1 class="display-5 fw-bolder">FOOD NAME</h1>
+						<h5>Date: 04-11-2022</h5>
                         <div class="fs-5 mb-4">
-                            <span>€{{product.price_per_quant}}</span>
+                            <span>€4.00</span>
                         </div>
                         <p class="lead">Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium at dolorem quidem modi. Nam sequi consequatur obcaecati excepturi alias magni, accusamus eius blanditiis delectus ipsam minima ea iste laborum vero?</p>
 						<p class="h6 mb-4">Ingredients: vegetables, spices and Herbs, cereals and Pulses, meat, dairy Products, fruits products</p>
