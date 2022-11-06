@@ -86,17 +86,35 @@ def product_add(request):
     data = {}
     if request.method == "POST":
         data = request.POST.dict()
-        action = data.get("firstname")
 
-        user = CustomUser.objects.all()[0]
+        print('hee', CustomUser.objects.all())
+        print('hoo', CustomUser.objects.all()[0])
+        seller = CustomUser.objects.all()[0]
+
+        quantity = data["quantity"]
+        price_per_quant = data["price_per_quant"]
+        description = data["description"]
+        food_type = data["food_type"]
+        if 'packaging' in data:
+            packaging = data['packaging'] == 'on'
+        else:
+            packaging = False
+
+        # image = data["image"]
+        
+        print('pack', packaging)
+
         product = Product(
-            seller=user,
-            quantity=10,
-            price_per_quant=10,
-            description="Very nice ratatouille",
-            food_type="PACK",
-            packaging="True",
+            seller=seller,
+            quantity=quantity,
+            price_per_quant=price_per_quant,
+            description=description,
+            food_type=food_type,
+            packaging=packaging,
+            # image=image,
         )
+
+        print('PRODS', Product.objects.all().values())
         product.save()
 
     return render(request, "success.html", {"product": data})
