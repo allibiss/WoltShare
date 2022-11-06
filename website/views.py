@@ -89,7 +89,7 @@ class ProductView(TemplateView):
         product = Product.objects.get(id=pk)
         shipping_cost = self._get_shipping_fee(product.seller, self.request.user)
         context["product"] = product
-        context["shipping_cost"] = shipping_cost
+        context["shipping_cost"] = shipping_cost / 100
         return context
 
     def _get_shipping_fee(self, seller: CustomUser, buyer: CustomUser):
