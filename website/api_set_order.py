@@ -7,9 +7,13 @@ def make_order(DeliveryFeeRequestPayload_):
     url = "https://daas-public-api.development.dev.woltapi.com/merchants/6364e0108018ce361efafcc3/delivery-order"
     h = {"Authorization": "Bearer 8OJSTMKSAGoWUkO3ETXtQwZEiKYymzH4mAmbG1icJVU"}
     x = requests.post(url, json=DeliveryFeeRequestPayload_, headers=h)
-    # data = x.json()
-    # url = data['tracking']['url']
-    print(x.text)
+    data = x.json()
+    if x.ok:
+        url = data["tracking"]["url"]
+    else:
+        # Used for debug because of 1 hour rate limiter
+        url = "https://daas-track.development.dev.woltapi.com/track/96TZPM"
+    return url
 
 
 def DelFeeReq_strg(start, end):
@@ -78,14 +82,18 @@ def makeOrderStrg(order):
 
 
 def main():
-
-    buyer = User("gino", "Arkadiankatu 3-6", "+358123456789", "gino.bello@gmail.com")
+    buyer = User(
+        "gino",
+        "Arkadiankatu 3-6",
+        "+358123456789",
+        "gino.bello@gmail.com",
+    )
     seller = User(
-        "ugo", "Otakaari 24, 02150 Espoo", "+358123456789", "ugo.bello@gmail.com"
+        "ugo",
+        "Otakaari 24, 02150 Espoo",
+        "+358123456789",
+        "ugo.bello@gmail.com",
     )
     order = Order(seller, buyer, 2537)
     order_strg = makeOrderStrg(order)
     make_order(order_strg)
-
-
-main()

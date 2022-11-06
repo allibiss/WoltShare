@@ -26,21 +26,27 @@ Product:
                 <div class="row gx-4 gx-lg-5 align-items-center">
                     <div class="col-md-6"><img class="card-img-top mb-5 mb-md-0" src="{% static 'images/product.jpg'%}" alt="food" /></div>
                     <div class="col-md-6">
-                        <div class="small mb-1">Cooked by: <a href="profile.html">Name Surname</a><span class="text-secondary"> (Helsinki, 10km)</span></div>
+                        <div class="small mb-1">Cooked by: <a href="/accounts/profile/{{product.seller.id}}">{{product.seller.name}}</a><span class="text-secondary"> (Helsinki, 10km)</span></div>
                         <h1 class="display-5 fw-bolder">{{product.title}}</h1>
 						<h5>Date: {{ product.date }}</h5>
 						<h5>Available portions: {{ product.quantity }}</h5>
                         <div class="fs-5 mb-4">
                             <span>€{{product.price_per_quant}}</span>
+                            <p style="color: gray; font-size: 17px;">Shipping fee: €{{ shipping_cost }}</p>
                         </div>
+
+
                         <p class="lead">{{product.description}}</p>
 						<p class="h6 mb-4">Ingredients: {{product.ingredients}}</p>
                         <div class="d-flex">
                             <input class="form-control text-center me-3" id="inputQuantity" type="num" value="1" style="max-width: 3rem" />
-                            <button class="btn btn-outline-dark flex-shrink-0" type="button">
-                                <i class="bi-cart-fill me-1"></i>
-                                Add to cart
-                            </button>
+
+                            <a href="/purchase/{{product.id}}">
+                                <button class="btn btn-outline-dark flex-shrink-0" type="button">
+                                    <i class="bi-cart-fill me-1"></i>
+                                    Buy
+                                </button>
+                            </a>
                         </div>
                     </div>
                 </div>
