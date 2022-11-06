@@ -10,18 +10,22 @@
     <br>
     
     <label for="quantity">Quantity</label>
-    <input type="number" id="quantity" name="quantity" placeholder="How many portions do you have?">
+    <input type="number" id="quantity" name="quantity" placeholder="How many portions do you have?" value=5>
     <br>
     
     <label for="price_per_quant">Price per quantity</label>
-    <input type="number" id="price_per_quant" name="price_per_quant" placeholder="Price for one portion">
+    <input type="number" id="price_per_quant" name="price_per_quant" placeholder="Price for one portion" value=1>
     <br>
     
     <label for="description">Description</label>
-    <input type="text" id="description" name="description" placeholder="Describe the food...">
+    <input type="text" id="description" name="description" placeholder="Describe the food..." value="so good">
+    <br>
+
+    <label for="ingredients">Ingredients</label>
+    <input type="text" id="ingredients" name="ingredients" placeholder="What does it have?" value="Everything">
     <br>
     
-{{...models.FOOD_TYPE_CHOICES}}
+<!-- {{...models.FOOD_TYPE_CHOICES}} -->
 
     <label for="food_type">Food type</label>
     <select id="food_type" name="food_type">

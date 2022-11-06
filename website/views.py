@@ -11,8 +11,12 @@ from django.views.generic import (
 )
 from django.views.generic.detail import DetailView
 
+from django.conf import settings
+
 from .forms import ProductForm, SellForm
 from .models import CustomUser, Product
+
+import os
 
 # class ProfileView(TemplateView):
 #     template_name = "profile.html"
@@ -87,8 +91,6 @@ def product_add(request):
     if request.method == "POST":
         data = request.POST.dict()
 
-        print('hee', CustomUser.objects.all())
-        print('hoo', CustomUser.objects.all()[0])
         seller = CustomUser.objects.all()[0]
 
         quantity = data["quantity"]
@@ -100,7 +102,12 @@ def product_add(request):
         else:
             packaging = False
 
-        # image = data["image"]
+        image = data["image"]
+        print('image', image, type(image))
+        name = 'food.jpeg'
+        new_path = settings.MEDIA_ROOT + name
+        # Move the file on the filesystem
+        os.rename(image, new_path)
         
         print('pack', packaging)
 
@@ -111,10 +118,12 @@ def product_add(request):
             description=description,
             food_type=food_type,
             packaging=packaging,
-            # image=image,
+            image=image,
+            date='2022-11-06',
+            ingredients='Everything'
         )
 
-        print('PRODS', Product.objects.all().values())
+        # print('PRODS', Product.objects.all().values())
         product.save()
 
     return render(request, "success.html", {"product": data})

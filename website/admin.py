@@ -12,6 +12,9 @@ class ProductAdmin(admin.ModelAdmin):
         "description",
         "food_type",
         "packaging",
+        "image",
+        "ingredients",
+        "date",
     )
 
 

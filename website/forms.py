@@ -31,4 +31,5 @@ class ProductForm(forms.ModelForm):
             "description",
             "food_type",
             "packaging",
+            "date",
         ]

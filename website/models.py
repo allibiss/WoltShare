@@ -34,7 +34,7 @@ class Product(models.Model):
         max_length=4, choices=FOOD_TYPE_CHOICES, default="PACK"
     )
     packaging = models.BooleanField("Does it have packaging", default="False")
-    # image = models.ImageField('Image', upload_to='products')
+    image = models.ImageField('Image', upload_to='products')
     date = models.DateField("Date", default=datetime.date.today)
 
 
