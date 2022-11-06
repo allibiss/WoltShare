@@ -44,8 +44,16 @@ class ProductView(TemplateView):
         # All products
         pk = self.kwargs["pk"]
         product = Product.objects.get(id=pk)
+        shipping_cost = self._get_shipping_cost(product.seller, self.request.user)
         context["product"] = product
+        context["shipping_cost"] = shipping_cost
+
         return context
+
+    def _get_shipping_cost(self, seller: CustomUser, buyer: CustomUser):
+        print("Seller", seller)
+        print("Buyer", buyer)
+        return 1
 
 
 # class BuyProductView(TemplateView):

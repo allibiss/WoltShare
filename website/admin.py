@@ -28,4 +28,5 @@ class CustomUserAdmin(admin.ModelAdmin):
         "phone",
         "lat",
         "lon",
+        "address",
     )
