@@ -19,6 +19,7 @@ urlpatterns = [
     path("done/", my_views.DoneView.as_view()),
     path("product/", my_views.ProductsView.as_view()),
     path("product/<int:pk>/", my_views.ProductView.as_view(), name="product-update"),
+    path("purchase/<int:pk>/", my_views.purchase_view),
     path(
         "product/<int:pk>/delete/",
         my_views.ProductDeleteView.as_view(),
@@ -32,12 +33,12 @@ urlpatterns = [
     # ),
     path(
         "accounts/profile/",
-        my_views.CustomUserView.as_view(),
+        my_views.CustomUserOwnView.as_view(),
         name="profile",
     ),
     path(
         "accounts/profile/<int:pk>",
-        my_views.CustomUserOwnView.as_view(),
+        my_views.CustomUserView.as_view(),
         name="profile",
     ),
 ]

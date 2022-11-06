@@ -7,7 +7,7 @@ def get_fee(DeliveryFeeRequestPayload_):
     x = requests.post(url, json=DeliveryFeeRequestPayload_, headers=h)
     data = x.json()
     fee = data["fee"]["amount"]
-    print(fee)
+    return fee
 
 
 def DelFeeReq_strg(start, end):
@@ -23,6 +23,3 @@ def main():
     end = "Otakaari 24, 02150 Espoo"
     myStrgReq = DelFeeReq_strg(start, end)
     get_fee(myStrgReq)
-
-
-main()
