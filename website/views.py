@@ -119,29 +119,28 @@ def product_add(request):
         seller = CustomUser.objects.all()[0]
 
         print('DATA', data)
-        print('REQUEST', request.POST)
 
-        quantity = data["quantity"]
-        price_per_quant = data["price_per_quant"]
-        description = data["description"]
-        food_type = data["foodtype"]
+        # quantity = data["quantity"]
+        # price_per_quant = data["price_per_quant"]
+        # description = data["description"]
+        # food_type = data["foodtype"]
 
-        if "container" in data:
-            packaging = True
-        else:
-            packaging = False
+        # if "container" in data:
+        #     packaging = True
+        # else:
+        #     packaging = False
 
-        # rules
-        if "rules" not in data:
-            # reload? not let forward
-            return render(request, "post_form.html", {"error": "Accept terms of condition, please!"})
+        # # rules
+        # if "rules" not in data:
+        #     # reload? not let forward
+        #     return render(request, "post_form.html", {"error": "Accept terms of condition, please!"})
         
-        title = data['title']
+        # title = data['title']
 
-        ingredients = []
-        for i in range(6):
-            if f'ingredient{i+1}s' in data:
-                ingredients.append(data['ingredient{i+1}s'])
+        # ingredients = []
+        # for i in range(6):
+        #     if f'ingredient{i+1}s' in data:
+        #         ingredients.append(data['ingredient{i+1}s'])
         
         # ingredient1s = data['ingredient1s']
         # ingredient2s = data['ingredient2s']
@@ -153,21 +152,21 @@ def product_add(request):
 
         image = data["image"]
 
-        print("pack", packaging)
+        # print("pack", packaging)
 
-        product = Product(
-            seller=seller,
-            title=title,
-            quantity=quantity,
-            price_per_quant=price_per_quant,
-            description=description,
-            food_type=food_type,
-            packaging=packaging,
-            image=image,
-            date="2022-11-06",
-            ingredients=ingredients,
-        )
+        # product = Product(
+        #     seller=seller,
+        #     title=title,
+        #     quantity=quantity,
+        #     price_per_quant=price_per_quant,
+        #     description=description,
+        #     food_type=food_type,
+        #     packaging=packaging,
+        #     image=image,
+        #     date="2022-11-06",
+        #     ingredients=ingredients,
+        # )
 
-        product.save()
+        # product.save()
 
     return render(request, "success.html", {"product": data})
