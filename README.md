@@ -5,7 +5,7 @@ Challenge: **Wolt**\
 **Better Cities. Delivered.**
 
 Participants:
-- Marco DiFrancesco
+- Marco Di Francesco
 - József-Hunor Jánosi
 - Fatmakhanim Mammadova
 - Giacomo Mutti
